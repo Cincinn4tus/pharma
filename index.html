@@ -60,11 +60,10 @@
           <li><a class="nav-link scrollto" href="#about">Forum</a></li>
           <li><a class="nav-link scrollto" href="#services">Candidats</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Contact</a></li>
-          <a class="nav-link scrollto btn-get-started" href="#contact">Se connecter</a>
+          <button class="btn-get-started" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
@@ -121,6 +120,55 @@
       </div>
     </section><!-- End Featured Services Section -->
 
+
+    
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="modallabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal">Connexion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <form method="POST" action="/login.php">
+                            <input type="email" class="form-control" name="email" placeholder="Votre email" required="required"><br>
+                            <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" required="required"><br>
+                        
+                            <a href="#">
+                                <button class="btn btn-starter">
+                                    Mot de passe oublié ?
+                                </button>
+                            </a>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/registrer.php">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">S'inscrire</button>
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            Se connecter
+                        </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
     <!-- ======= About Section ======= -->
     <section id="about" class="about section-bg">
       <div class="container" data-aos="fade-up">
@@ -149,16 +197,16 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p>
+              <span data-purecounter-start="0" data-purecounter-end="15000" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Postes à pourvoir </p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
             <div class="count-box">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
+              <span data-purecounter-start="0" data-purecounter-end="1500" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Officines recrutent</p>
             </div>
           </div>
 

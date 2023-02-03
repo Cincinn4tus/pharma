@@ -1554,6 +1554,15 @@ section {
   margin-bottom: 20px;
 }
 
+form input{
+  border-radius: 10%;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 2em;
+}
+
 .contact .php-email-form input,
 .contact .php-email-form textarea {
   border-radius: 0;
