@@ -1795,3 +1795,13 @@ section {
     padding: 2px 0;
   }
 }
+
+#error-msg{
+  text-align: center;
+}
+
+#error-msg img{
+  height: 70vh;
+  width: auto;
+  margin: auto;
+}

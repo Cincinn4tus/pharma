@@ -11,6 +11,24 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+02:00";
 default-time-zone='+02:00'
 
+-- create table pharmemploi_user in phpmyadmin
+
+CREATE TABLE pharmemploi_user (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_avatar VARCHAR(320) DEFAULT '/assets/img/default_avatar.png',
+    user_role INT(1) NOT NULL,
+    email VARCHAR(320) NOT NULL,
+    firstname VARCHAR(45) DEFAULT NULL,
+    lastname VARCHAR(100) DEFAULT NULL,
+    pwd VARCHAR(255) NOT NULL,
+    country CHAR(2) NOT NULL,
+    birthday DATE NOT NULL,
+    pseudo VARCHAR(60) NOT NULL,
+    status TINYINT(4) NOT NULL DEFAULT '0',
+    token CHAR(40) DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Base de données :  `projetweb1A1`
 --

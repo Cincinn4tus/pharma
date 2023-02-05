@@ -56,7 +56,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
-          <li><a class="nav-link scrollto" href="forum/main">Forum</a></li>
+          <li><a class="nav-link scrollto" href="forum/main.php">Forum</a></li>
           <li><a class="nav-link scrollto" href="#services">Candidats</a></li>
           <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
           <button class="btn-get-started" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
