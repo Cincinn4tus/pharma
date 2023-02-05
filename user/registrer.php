@@ -6,6 +6,13 @@
 
 
 <div class="container text-center">
+<?php
+				if(!empty($_SESSION['errors'])){
+					print_r( $_SESSION['errors'] );
+					unset($_SESSION['errors']);
+					//session_destroy();
+				}
+			?>
   <div class="row">
     <h3>Inscription</h3>
   </div>

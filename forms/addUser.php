@@ -1,8 +1,6 @@
 <?php
 session_start();
-require "functions.php";
-
-
+require "/conf/functions.php";
 
 
 
@@ -114,11 +112,6 @@ if( !in_array($country, $countryAuthorized) ){
 
 
 if(count($errors) == 0){
-
-	
-
-
-
 	$queryPrepared = $pdo->prepare("INSERT INTO baudrien_user (email,user_avatar, user_role, firstname, lastname, pseudo, country, birthday, pwd) 
 		VALUES ( :email ,:user_avatar, :user_role, :firstname, :lastname, :pseudo, :country, :birthday, :pwd );");
 
@@ -137,9 +130,9 @@ if(count($errors) == 0){
 								"pwd"=>$pwd
 							]);
 
-	header("Location: ./index.php");	
+	header("Location: /index.php");	
 
-}else{
+}else{ 
 	$_SESSION['errors'] = $errors;
-	header("Location: ./register.php");
+	header("Location: /user/register.php");
 }
