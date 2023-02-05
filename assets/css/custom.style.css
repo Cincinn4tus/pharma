@@ -188,11 +188,11 @@ strong{
   font-family: "Poppins", sans-serif;
 }
 
-#header .logo a {
+.logo a {
   color: #222222;
 }
 
-#header .logo a span {
+.logo-span {
   color: green;
 }
 
@@ -1554,13 +1554,15 @@ section {
   margin-bottom: 20px;
 }
 
-form input{
-  border-radius: 10%;
+#form input{
   box-shadow: none;
   display: flex;
   flex-direction: column;
-  width: 80%;
   height: 2em;
+}
+
+#registrer-form{
+  margin: auto;
 }
 
 
@@ -1696,10 +1698,6 @@ form input{
   font-weight: 700;
 }
 
-#footer .footer-top .footer-contact h3 span {
-  color: #106eea;
-}
-
 #footer .footer-top .footer-contact p {
   font-size: 14px;
   line-height: 24px;
@@ -1796,8 +1794,4 @@ form input{
     text-align: center;
     padding: 2px 0;
   }
-}
-
-*, body{
-  background-color: red;
 }
