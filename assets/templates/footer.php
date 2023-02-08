@@ -1,6 +1,6 @@
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <footer id="footer" class="mt-5">
     <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
@@ -80,7 +80,6 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
-
 </body>
 
 </html>

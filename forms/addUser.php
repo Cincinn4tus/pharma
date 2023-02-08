@@ -1,20 +1,21 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 session_start();
-require "/conf/functions.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/conf/functions.php";
 
 
 
 //récupérer les données du formulaire
+$type = $_POST["type"];
 $avatar = "./assets/img/default_avatar.png";
-$role = $_POST["user_role"];
 $email = $_POST["email"];
 $firstname = $_POST["firstname"];
 $lastname = $_POST["lastname"];
 $pseudo = $_POST["pseudo"];
-$pwd = $_POST["password"];
-$pwdConfirm = $_POST["passwordConfirm"];
-$birthday = $_POST["birthday"];
-$country = $_POST["country"];
+$pwd = $_POST["pwd"];
+$pwdConfirm = $_POST["pwdConfirm"];
+$birthday = $_POST["birthdate"];
 $cgu = $_POST["cgu"];
 
 
@@ -36,7 +37,7 @@ $errors = [];
 // ROLE
 
 
-if($role !=2 && $role !=3){
+if($type !=0 && $type !=1){
     $errors[] = "Choisir le type de compte";
 }
 
@@ -49,7 +50,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
 	//Vérification l'unicité de l'email
 	$pdo = connectDB();
-	$queryPrepared = $pdo->prepare("SELECT id from baudrien_user WHERE email=:email");
+	$queryPrepared = $pdo->prepare("SELECT id from pharmemploi_user WHERE email=:email");
 
 	$queryPrepared->execute(["email"=>$email]);
 	
@@ -79,16 +80,14 @@ if( strlen($pseudo)<4 || strlen($pseudo)>60 ){
 //entre 16 et 100 ans
 $birthdayExploded = explode("-", $birthday);
 
-if( count($birthdayExploded)!=3 || !checkdate($birthdayExploded[1], $birthdayExploded[2], $birthdayExploded[0])){
-	$errors[] = "date incorrecte";
-}else{
+
 	$age = (time() - strtotime($birthday))/60/60/24/365.2425;
 	if($age < 16 || $age > 100){
 		$errors[] = "Vous êtes trop jeune ou trop vieux";
 	}
-}
 
 
+/*
 //Mot de passe : Min 8, Maj, Min et chiffre
 if(strlen($pwd) < 8 ||
 preg_match("#\d#", $pwd)==0 ||
@@ -97,35 +96,30 @@ preg_match("#[A-Z]#", $pwd)==0
 ) {
 	$errors[] = "Votre mot de passe doit faire plus de 8 caractères avec une minuscule, une majuscule et un chiffre";
 }
-
+*/
 
 //Confirmation : égalité
 if( $pwd != $pwdConfirm){
 	$errors[] = "Votre mot de passe de confirmation ne correspond pas";
 }
 
-//Pays
-$countryAuthorized = ["fr", "ml", "pl"];
-if( !in_array($country, $countryAuthorized) ){
-	$errors[] = "Votre pays n'existe pas";
-}
+
 
 
 if(count($errors) == 0){
-	$queryPrepared = $pdo->prepare("INSERT INTO baudrien_user (email,user_avatar, user_role, firstname, lastname, pseudo, country, birthday, pwd) 
-		VALUES ( :email ,:user_avatar, :user_role, :firstname, :lastname, :pseudo, :country, :birthday, :pwd );");
+	$queryPrepared = $pdo->prepare("INSERT INTO pharmemploi_user (email,avatar, user_type, firstname, lastname, pseudo, birthday, pwd) 
+		VALUES ( :email ,:avatar, :user_type, :firstname, :lastname, :pseudo, :birthday, :pwd );");
 
 
 	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 	
 	$queryPrepared->execute([
 								"email"=>$email,
-								"user_avatar"=> $avatar,
-                                "user_role"=>$role,
+								"avatar"=> $avatar,
+                                "user_type"=>$type,
 								"firstname"=>$firstname,
 								"lastname"=>$lastname,
 								"pseudo"=>$pseudo,
-								"country"=>$country,
 								"birthday"=>$birthday,
 								"pwd"=>$pwd
 							]);
@@ -134,5 +128,5 @@ if(count($errors) == 0){
 
 }else{ 
 	$_SESSION['errors'] = $errors;
-	header("Location: /user/register.php");
+	header("Location: /user/registrer.php");
 }

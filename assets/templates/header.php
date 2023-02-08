@@ -52,14 +52,43 @@
       <h1 class="logo"><a href="/">Pharma<span class="logo-span">-</span>emploi</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
-
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
           <li><a class="nav-link scrollto" href="forum/main.php">Forum</a></li>
-          <li><a class="nav-link scrollto" href="#services">Candidats</a></li>
+          <?php
+          if(isConnected() && $userType == 1) {
+            ?>
+          <li><a class="nav-link scrollto" href="#services">Publier une offre</a></li>
+          <li><a class="nav-link scrollto" href="#services">Chercher un candidat</a></li>
+          <?php } else { ?>
+          <li><a class="nav-link scrollto" href="/publisher/broadcast.php">Rechercher une offre</a></li>
+          <li><a class="nav-link scrollto" href="/publisher/broadcast.php">Publier une annonce</a></li>
+          <?php } ?>
+
+          
           <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
-          <button class="btn-get-started" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
+          <?php
+            if(isConnected()) {
+            ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon profil
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Vue d'ensemble</a></li>
+                <li><a class="dropdown-item" href="#">Messagerie</a></li>
+                <li><a class="dropdown-item" href="#">Visio</a></li>
+                <li><a class="dropdown-item" href="#">Informations</a></li>
+                <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                <li><a class="dropdown-item" href="/user/logout.php">Deconnexion</a></li>
+              </ul>
+            </li>
+            <?php } else { ?>
+                <button class="btn-get-started" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
+            <?php
+            }
+              ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -79,7 +108,7 @@
                     </div>
                     <div class="modal-body">
                         
-                        <form id="form" method="POST" action="/login.php">
+                        <form id="form" method="POST" action="/user/login.php">
                             <input type="email" class="form-control" name="email" placeholder="Votre email" required="required"><br>
                             <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" required="required"><br>
                         

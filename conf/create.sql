@@ -21,7 +21,6 @@ CREATE TABLE pharmemploi_user (
     firstname VARCHAR(45) DEFAULT NULL,
     lastname VARCHAR(100) DEFAULT NULL,
     pwd VARCHAR(255) NOT NULL,
-    country CHAR(2) NOT NULL,
     birthday DATE NOT NULL,
     pseudo VARCHAR(60) NOT NULL,
     status TINYINT(4) NOT NULL DEFAULT '0',
@@ -83,7 +82,7 @@ CREATE TABLE `pharmemploi_user` (
 -- Déchargement des données de la table `baudrien_user`
 --
 
-INSERT INTO `pharmemploi_user` (`id`, `user_role` `email`, `firstname`, `lastname`, `pwd`, `country`, `birthday`, `pseudo`, `status`, `date_inserted`, `date_updated`, `token`) VALUES
+INSERT INTO `pharmemploi_user` (`id`, `type` `email`, `firstname`, `lastname`, `pwd`, `country`, `birthday`, `pseudo`, `status`, `date_inserted`, `date_updated`, `token`) VALUES
 (1, 1, 'aligoumane@protonmail.com', 'Ali', 'Goumane', '$2y$10$oHnAf2HYOm8/kceE2PWQouUNNLZOaGykpddqJGZSeqrOFb93TqBKm', 'fr', '1986-11-29', 'Prof', 0, '2022-03-28 16:17:52', '2022-03-28 16:17:56', 'c6c6191be3b8868ac6ce1706a97e6afc70b19769');
 
 --
@@ -94,7 +93,7 @@ INSERT INTO `pharmemploi_user` (`id`, `user_role` `email`, `firstname`, `lastnam
 -- Index pour la table `baudrien_user`
 --
 ALTER TABLE `pharmemploi_user`
-  ADD PRIMARY KEY (`id`);
+  ADD type INT(1) NOT NULL;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées

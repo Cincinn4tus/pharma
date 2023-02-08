@@ -1,4 +1,8 @@
 <?php
+  error_reporting(E_ALL);
+  ini_set("display_errors", 1);
+  session_start();
+  require $_SERVER['DOCUMENT_ROOT'] . "/conf/functions.php";
   include($_SERVER['DOCUMENT_ROOT'] . "/assets/templates/header.php");
   ?>
 
@@ -9,7 +13,7 @@
       <h1>Bienvenue sur <span>Pharma-emploi</span></h1>
       <h2><strong>Une nouvelle façon de se connecter à des opportunités de carrière en pharmacie</strong></h2>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">S'inscrire</a>
+        <a href="/user/registrer.php" class="btn-get-started scrollto">S'inscrire</a>
         <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Regarder la vidéo</span></a>
       </div>
     </div>

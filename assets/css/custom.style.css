@@ -25,6 +25,16 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
+.main-title{
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.wrapper{
+  height: 80vh;
+}
+
 strong{
   font-weight: normal;
 }
