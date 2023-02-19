@@ -2,6 +2,10 @@
   error_reporting(E_ALL);
   ini_set("display_errors", 1);
   session_start();
+
+  $robots = "index, follow";
+  $title = "Accueil";
+
   require $_SERVER['DOCUMENT_ROOT'] . "/conf/functions.php";
   include($_SERVER['DOCUMENT_ROOT'] . "/assets/templates/header.php");
   ?>
@@ -36,24 +40,24 @@
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
               <div class="icon"><i class="bx bxs-file-pdf"></i></div>
-              <h4 class="title"><a href="">CV</a></h4>
+              <h4 class="title"><a href="">CVThèque</a></h4>
               <p class="description">Téléchargez et consultez les CV de vos candidats</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-message"></i></div>
-              <h4 class="title"><a href="">Messagerie</a></h4>
-              <p class="description">Avec la messagerie, vous pouvez discuter directement sur la plateforme avec les candidats qui vous intéressent</p>
+              <div class="icon"><i class="bx bx-envelope"></i></div>
+              <h4 class="title"><a href="">Alertes</a></h4>
+              <p class="description">Restez informé chaque jour des nouveaux profils grâce aux alertes personnamlisées</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="bx bx-webcam"></i></div>
-              <h4 class="title"><a href="">Visio</a></h4>
-              <p class="description">Programmez vos rdv en ligne et intergaissez directement via webcam</p>
+              <div class="icon"><i class="bx bx-at"></i></div>
+              <h4 class="title"><a href="">Newsletter</a></h4>
+              <p class="description">Recevez les dernières offres d'emploi et les conseils de carrière directement dans votre boîte de réception avec notre Newsletter</p>
             </div>
           </div>
         </div>

@@ -270,3 +270,45 @@
 
 })()
 
+
+
+
+    function checkLength() {
+      var text = document.getElementById("jobDescription").value;
+      var textLength = text.length;
+      document.getElementById("charCount").innerHTML = textLength + " /2000";
+      if (textLength >= 200 && textLength <= 2000) {
+        document.getElementById("jobDescription").style.border = "2px solid green";
+      } else {
+        document.getElementById("jobDescription").style.border = "2px solid red";
+      }
+    }
+
+  
+  // vérifie si l'utilisateur est connecté et renvoi un booléen
+
+  function isUserConnected() {
+    var user = firebase.auth().currentUser;
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // si l'utilisateur n'est pas connecté, tous les liens ayant une classe "nav-link" ouvre la modal de connexion dont l'id est "loginModal"
+
+  function checkUserConnection() {
+    if (!isUserConnected()) {
+      var navLinks = document.getElementsByClassName("nav-link");
+      for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener("click", function () {
+          $("#loginModal").modal("show");
+        });
+      }
+    }
+  }
+
+  
+
+    

@@ -7,7 +7,10 @@ require $_SERVER['DOCUMENT_ROOT'] . "/conf/functions.php";
 
 
 //récupérer les données du formulaire
+$gender = $_POST["gender"];
 $type = $_POST["type"];
+$zipcode = $_POST["zipcode"];
+$city = $_POST["city"];
 $avatar = "./assets/img/default_avatar.png";
 $email = $_POST["email"];
 $firstname = $_POST["firstname"];
@@ -50,7 +53,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
 	//Vérification l'unicité de l'email
 	$pdo = connectDB();
-	$queryPrepared = $pdo->prepare("SELECT id from pharmemploi_user WHERE email=:email");
+	$queryPrepared = $pdo->prepare("SELECT id from pharm_user WHERE email=:email");
 
 	$queryPrepared->execute(["email"=>$email]);
 	
@@ -107,22 +110,28 @@ if( $pwd != $pwdConfirm){
 
 
 if(count($errors) == 0){
-	$queryPrepared = $pdo->prepare("INSERT INTO pharmemploi_user (email,avatar, user_type, firstname, lastname, pseudo, birthday, pwd) 
-		VALUES ( :email ,:avatar, :user_type, :firstname, :lastname, :pseudo, :birthday, :pwd );");
+	$queryPrepared = $pdo->prepare("INSERT INTO pharm_user (email,user_avatar, user_type, firstname, lastname, pseudo, birthday, pwd, zip_code, city, gender) 
+		VALUES ( :email ,:user_avatar, :user_type, :firstname, :lastname, :pseudo, :birthday, :pwd, :zip_code, :city, :gender)");
 
 
 	$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 	
 	$queryPrepared->execute([
 								"email"=>$email,
-								"avatar"=> $avatar,
+								"user_avatar"=> $avatar,
                                 "user_type"=>$type,
 								"firstname"=>$firstname,
 								"lastname"=>$lastname,
 								"pseudo"=>$pseudo,
 								"birthday"=>$birthday,
-								"pwd"=>$pwd
+								"pwd"=>$pwd,
+								"zip_code"=>$zipcode,
+								"city"=>$city,
+								"gender"=>$gender
 							]);
+
+
+
 
 	header("Location: /index.php");	
 

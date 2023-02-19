@@ -1,6 +1,11 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+/*
+  remove all root styles
+*/
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -32,7 +37,7 @@ h6 {
 }
 
 .wrapper{
-  height: 80vh;
+  margin-bottom: 30px;
 }
 
 strong{
@@ -1814,4 +1819,12 @@ section {
   height: 70vh;
   width: auto;
   margin: auto;
+}
+
+.offer{
+  text-align: center;
+}
+
+.main-card{
+  font-weight: bold;
 }

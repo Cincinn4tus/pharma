@@ -11,7 +11,7 @@
 
 
 					$pdo = connectDB();
-					$queryPrepared = $pdo->prepare("SELECT * FROM pharmemploi_user WHERE email=:email");
+					$queryPrepared = $pdo->prepare("SELECT * FROM pharm_user WHERE email=:email");
 					$queryPrepared->execute(["email"=>$_POST['email']]);
 					$results = $queryPrepared->fetch();
 

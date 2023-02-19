@@ -1,6 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+$title = "Inscription";
+
   session_start();
   require $_SERVER['DOCUMENT_ROOT'] . "/conf/functions.php";
   include($_SERVER['DOCUMENT_ROOT'] . "/assets/templates/header.php");
@@ -27,9 +30,24 @@ ini_set("display_errors", 1);
       </div>
 
       <div class="row col-lg-11 mt-4">
-          <div class="col-lg-3">
+        <div class="col-lg-3">
               <input class="form-check-input" type="radio" name="type" id="employer" value="0"> <label class="form-label" for="employer">Je recrute</label>
               <input class="form-check-input" type="radio" name="type" id="searcher" value="1"> <label class="form-label" for="searcher">Je recherche</label>
+        </div>
+        <div class="col-lg-4">
+          <input class="form-control" type="text" name="zipcode" id="zipcode" placeholder="Votre code postal" required="required">
+        </div>
+        <div class="col-lg-5">
+          <input class="form-control" type="text" name="city" id="city" placeholder="Votre ville" required="required">
+        </div>
+
+      </div>
+
+      <div class="row col-lg-11 mt-4">
+          <div class="col-lg-3">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="0" checked="checked"> <label class="form-label" for="gender0">Monsieur</label>
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="1"> <label class="form-label" for="gender1">Madame</label>
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="1"> <label class="form-label" for="gender2">Autre</label>
           </div>
 
           <div class="col-lg-4">

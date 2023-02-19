@@ -11,12 +11,47 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+02:00";
 default-time-zone='+02:00'
 
+
+-- création de la table pharm_offer
+
+CREATE TABLE pharm_offer (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    position VARCHAR(255) NOT NULL,
+    entitled VARCHAR(255) NOT NULL,
+    dateStart DATE NOT NULL,
+    contract VARCHAR(255) NOT NULL,
+    salary VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    user_type INT(1) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- supprime la colonne 'user_id' de la table 'pharm_offer'
+ALTER TABLE pharm_offer DROP COLUMN user_id;
+
+-- ajoute à la table pharm_offer la colonne 'user_id' référencée à la colonne 'id' de la table 'pharm_user' avec la syntaxe innodb
+ALTER TABLE pharm_offer ADD COLUMN user_id INT(6) UNSIGNED NOT NULL;
+ALTER TABLE pharm_offer ADD FOREIGN KEY (user_id) REFERENCES pharm_user(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+
+
+
+
+
+-- supprimer la table pharm_offer
+DROP TABLE pharm_offer;
+
+
+
 -- create table pharmemploi_user in phpmyadmin
 
-CREATE TABLE pharmemploi_user (
+CREATE TABLE DBXPHARMA.pharmemploi_user (
     id INT(11) NOT NULL AUTO_INCREMENT,
     user_avatar VARCHAR(320) DEFAULT '/assets/img/default_avatar.png',
-    user_role INT(1) NOT NULL,
+    user_type INT(1) NOT NULL,
     email VARCHAR(320) NOT NULL,
     firstname VARCHAR(45) DEFAULT NULL,
     lastname VARCHAR(100) DEFAULT NULL,
@@ -27,6 +62,33 @@ CREATE TABLE pharmemploi_user (
     token CHAR(40) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- add zip code and countryin pharmaemploi_user table with null default value
+ALTER TABLE pharmemploi_user ADD COLUMN zip_code VARCHAR(10) DEFAULT NULL;
+ALTER TABLE pharmemploi_user ADD COLUMN country CHAR(2) DEFAULT NULL;
+
+-- renomme la table 'pharmemploi_candidate' en 'pharm_offer'
+RENAME TABLE pharmemploi_offer TO pharm_offer;
+
+-- rajoute une colonne 'user_type' dans la table 'pharm_offer' étant une clé étrangère de la table 'pharm_user' de la colonne 'user_type'
+ALTER TABLE pharm_offer ADD COLUMN user_type INT(1) NOT NULL;
+ALTER TABLE pharm_offer ADD FOREIGN KEY (user_type) REFERENCES pharm_user(user_type);
+
+-- crée la table 'pharm_offer' avec les données du formulaire de création d'offre d'emploi de la page 'forms/addOffer.php'
+CREATE TABLE pharm_offer (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_type INT(1) NOT NULL,
+    location_title VARCHAR(320) NOT NULL,
+    location_description TEXT NOT NULL,
+    location_image VARCHAR(320) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_type) REFERENCES pharm_user(user_type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- supprimer la colonne 'user_type' de la table 'pharm_offer'
+ALTER TABLE pharm_offer DROP COLUMN user_type;
+
 
 --
 -- Base de données :  `projetweb1A1`

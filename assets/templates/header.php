@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta name="description" content="Recherchez et recrutez les futurs membre de votre équipe officinale">
+  <meta name="description" content="Découvrez des offres d'emploi qualifiées et des candidats talentueux pour les pharmacies d'officine sur Pharma-emploi.fr">
+  <meta name="keywords" content="pharmacie, pharmacien, recrutement, emploi, offres d'emploi, candidats, talents, pharmacie d'officine, santé, médicaments, ordonnances, conseil pharmaceutique, parapharmacie, gestion de stock, vente, formation continue, officine, laboratoires pharmaceutiques">
+  <meta name="robots" content="<?php echo $robots; ?>">
 
-  <title>Pharma-emploi</title>
-  <meta content="préparateur / préparatrice en pharmacie, pharmacien, pharmacienne, emploi" name="keywords">
+  <title>Pharma-emploi.fr - <?php echo $title; ?> </title>
 
   <!-- Favicons -->
   <link href="/assets/img/favicon.png" rel="icon">
@@ -46,7 +47,7 @@
     </div>
   </section>
 
-  <!-- ======= Header ======= -->
+  <!-- ======= Header ======= --> 
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
       <h1 class="logo"><a href="/">Pharma<span class="logo-span">-</span>emploi</a></h1>
@@ -54,16 +55,16 @@
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
-          <li><a class="nav-link scrollto" href="forum/main.php">Forum</a></li>
+          <li><a class="nav-link active" href="/">Accueil</a></li>
+          <li><a class="nav-link" href="forum/main.php">Forum</a></li>
           <?php
-          if(isConnected() && $userType == 1) {
+          if(isConnected() && $userType == 0) {
             ?>
-          <li><a class="nav-link scrollto" href="#services">Publier une offre</a></li>
-          <li><a class="nav-link scrollto" href="#services">Chercher un candidat</a></li>
-          <?php } else { ?>
-          <li><a class="nav-link scrollto" href="/publisher/broadcast.php">Rechercher une offre</a></li>
-          <li><a class="nav-link scrollto" href="/publisher/broadcast.php">Publier une annonce</a></li>
+          <li><a class="nav-link" href="/publisher/offer.php">Publier une offre</a></li>
+          <li><a class="nav-link" href="/pages/listOffer.php">Chercher un candidat</a></li>
+          <?php } else if (isConnected() && $userType == 1){ ?>
+          <li><a class="nav-link" href="/pages/listOffer.php">Rechercher une offre</a></li>
+          <li><a class="nav-link" href="/publisher/offer.php">Publier une annonce</a></li>
           <?php } ?>
 
           
@@ -76,7 +77,7 @@
                 Mon profil
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Vue d'ensemble</a></li>
+                <li><a class="dropdown-item" href="/user/dashboard.php">Vue d'ensemble</a></li>
                 <li><a class="dropdown-item" href="#">Messagerie</a></li>
                 <li><a class="dropdown-item" href="#">Visio</a></li>
                 <li><a class="dropdown-item" href="#">Informations</a></li>

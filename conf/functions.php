@@ -37,7 +37,7 @@ error_reporting(E_ALL);
     function updateToken($userId, $token){
 
         $pdo = connectDB();
-        $queryPrepared = $pdo->prepare("UPDATE pharmemploi_user SET token=:token WHERE id=:id");
+        $queryPrepared = $pdo->prepare("UPDATE pharm_user SET token=:token WHERE id=:id");
         $queryPrepared->execute(["token"=>$token, "id"=>$userId]);
 
     }
@@ -50,7 +50,7 @@ error_reporting(E_ALL);
         }
     
         $pdo = connectDB();
-        $queryPrepared = $pdo->prepare("SELECT id FROM pharmemploi_user WHERE email=:email AND token=:token");	
+        $queryPrepared = $pdo->prepare("SELECT id FROM pharm_user WHERE email=:email AND token=:token");	
         $queryPrepared->execute(["email"=>$_SESSION["email"], "token"=>$_SESSION["token"]]);
     
         return $queryPrepared->fetch();
@@ -62,9 +62,8 @@ error_reporting(E_ALL);
         if (!isConnected()) {
             return false;
         }
-    
         $pdo = connectDB();
-        $queryPrepared = $pdo->prepare("SELECT * FROM pharmemploi_user WHERE email=:email AND token=:token");	
+        $queryPrepared = $pdo->prepare("SELECT * FROM pharm_user WHERE email=:email AND token=:token");	
         $queryPrepared->execute(["email"=>$_SESSION["email"], "token"=>$_SESSION["token"]]);
     
         return $queryPrepared->fetch();
@@ -74,6 +73,20 @@ error_reporting(E_ALL);
     if ($userInfo) {
         $userType = $userInfo['user_type'];
     }
+
+    // récupère en bdd l'utilisateur dont l'id correspond à la valeur de 'user_id' dans la table pharm_offer
+
+    function getUserInfoById($id) {
+        $pdo = connectDB();
+        $queryPrepared = $pdo->prepare("SELECT * FROM pharm_user WHERE id=:id");	
+        $queryPrepared->execute(["id"=>$id]);
+    
+        return $queryPrepared->fetch();
+        $userInfo = $queryPrepared->fetchAll();
+    }
+
+    
+
 
 
 
@@ -135,7 +148,7 @@ function numberOfUsers() {
     if (isConnected()) {
 		$pdo = connectDB();
 
-		$queryPrepared = $pdo->prepare("SELECT * FROM pharmemploi_user WHERE id != 1");
+		$queryPrepared = $pdo->prepare("SELECT * FROM pharm_user WHERE id != 1");
 		$queryPrepared->execute();
 		$results = $queryPrepared->fetchAll();
         $userCount = sizeof($results);
